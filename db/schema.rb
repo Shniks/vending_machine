@@ -18,11 +18,15 @@ ActiveRecord::Schema.define(version: 20170914040805) do
   create_table "machines", force: :cascade do |t|
     t.string "location"
     t.bigint "owner_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["owner_id"], name: "index_machines_on_owner_id"
   end
 
   create_table "owners", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "machines", "owners"
