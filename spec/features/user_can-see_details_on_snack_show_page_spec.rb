@@ -19,6 +19,7 @@ RSpec.describe 'As a user' do
       MachineSnack.create!(snack: @snack_1, machine: machine_5)
       MachineSnack.create!(snack: @snack_2, machine: machine_1)
       MachineSnack.create!(snack: @snack_2, machine: machine_2)
+      MachineSnack.create!(snack: @snack_2, machine: machine_3)
       MachineSnack.create!(snack: @snack_2, machine: machine_4)
       MachineSnack.create!(snack: @snack_3, machine: machine_2)
       MachineSnack.create!(snack: @snack_3, machine: machine_3)
@@ -32,6 +33,48 @@ RSpec.describe 'As a user' do
 
       expect(page).to have_content('White Castle Burger')
       expect(page).to have_content('Price: $3.50')
+    end
+
+    describe 'I see locations of machines that carry snack.' do
+      it 'I also see the average price of snacks in those machienes and count of items in each machine' do
+
+        content_1 = '* Hollywood (2 kinds of snacks, average price of $2.50)'
+        content_2 = '* Sunset (2 kinds of snacks, average price of $2.13)'
+        content_3 = '* La Canada (2 kinds of snacks, average price of $3.13)'
+        content_4 = '* Arcadia (2 kinds of snacks, average price of $2.13)'
+        content_5 = '* Downey (3 kinds of snacks, average price of $2.58)'
+
+        visit "/snacks/#{@snack_1.id}"
+
+        expect(page).to have_content('White Castle Burger')
+        expect(page).to have_content('Price: $3.50')
+        expect(page).to have_content('Locations')
+        expect(page).to have_content(content_1)
+        expect(page).to have_content(content_2)
+        expect(page).to have_content(content_3)
+        expect(page).to have_content(content_4)
+        expect(page).to have_content(content_5)
+
+        visit "/snacks/#{@snack_2.id}"
+
+        expect(page).to have_content('Pop Rocks')
+        expect(page).to have_content('Price: $1.50')
+        expect(page).to have_content('Locations')
+        expect(page).to have_content(content_1)
+        expect(page).to have_content(content_2)
+        expect(page).to have_content(content_3)
+        expect(page).to have_content(content_4)
+
+        visit "/snacks/#{@snack_3.id}"
+
+        expect(page).to have_content('Lays Chips')
+        expect(page).to have_content('Price: $2.75')
+        expect(page).to have_content('Locations')
+        expect(page).to have_content(content_2)
+        expect(page).to have_content(content_3)
+        expect(page).to have_content(content_4)
+        expect(page).to have_content(content_5)
+      end
     end
 
   end
