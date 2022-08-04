@@ -36,23 +36,20 @@ RSpec.describe 'As a user' do
     end
 
     describe 'I see locations of machines that carry snack.' do
-      it 'I also see the average price of snacks in those machienes and count of items in each machine' do
+      it 'I also see the average price of snacks in those machines and count of items in each machine' do
 
         content_1 = '* Hollywood (2 kinds of snacks, average price of $2.50)'
         content_2 = '* Sunset (2 kinds of snacks, average price of $2.13)'
-        content_3 = '* La Canada (2 kinds of snacks, average price of $3.13)'
+        content_3 = '* La Canada (3 kinds of snacks, average price of $2.58)'
         content_4 = '* Arcadia (2 kinds of snacks, average price of $2.13)'
-        content_5 = '* Downey (3 kinds of snacks, average price of $2.58)'
+        content_5 = '* Downey (2 kinds of snacks, average price of $3.13)'
 
         visit "/snacks/#{@snack_1.id}"
-
         expect(page).to have_content('White Castle Burger')
         expect(page).to have_content('Price: $3.50')
         expect(page).to have_content('Locations')
         expect(page).to have_content(content_1)
-        expect(page).to have_content(content_2)
         expect(page).to have_content(content_3)
-        expect(page).to have_content(content_4)
         expect(page).to have_content(content_5)
 
         visit "/snacks/#{@snack_2.id}"
@@ -76,6 +73,5 @@ RSpec.describe 'As a user' do
         expect(page).to have_content(content_5)
       end
     end
-
   end
 end
