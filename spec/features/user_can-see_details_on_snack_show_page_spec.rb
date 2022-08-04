@@ -10,14 +10,20 @@ RSpec.describe 'As a user' do
       machine_3 = owner.machines.create!(location: 'La Canada')
       machine_4 = owner.machines.create!(location: 'Arcadia')
       machine_5 = owner.machines.create!(location: 'Downey')
-      snack_1 = machine_1.snacks.create!(name: 'White Castle Burger', price: 3.50)
-      snack_1 = machine_3.snacks.create!(name: 'White Castle Burger', price: 3.50)
-      snack_2 = machine_1.snacks.create!(name: 'Pop Rocks', price: 1.50)
-      snack_2 = machine_4.snacks.create!(name: 'Pop Rocks', price: 1.50)
-      snack_2 = machine_5.snacks.create!(name: 'Pop Rocks', price: 1.50)
-      snack_3 = machine_1.snacks.create!(name: 'Lays Chips', price: 2.75)
-      snack_3 = machine_4.snacks.create!(name: 'Lays Chips', price: 2.75)
+      snack_1 = Snack.create!(name: 'White Castle Burger', price: 3.50)
+      snack_2 = Snack.create!(name: 'Pop Rocks', price: 1.50)
+      snack_3 = Snack.create!(name: 'Lays Chips', price: 2.75)
 
+      MachineSnack.create!(snack: snack_1, machine: machine_1)
+      MachineSnack.create!(snack: snack_1, machine: machine_3)
+      MachineSnack.create!(snack: snack_1, machine: machine_5)
+      MachineSnack.create!(snack: snack_2, machine: machine_1)
+      MachineSnack.create!(snack: snack_2, machine: machine_4)
+      MachineSnack.create!(snack: snack_3, machine: machine_2)
+      MachineSnack.create!(snack: snack_3, machine: machine_3)
+      MachineSnack.create!(snack: snack_3, machine: machine_4)
+      MachineSnack.create!(snack: snack_3, machine: machine_5)
+      
       visit "/snacks/#{snack_1.id}"
 
       expect(page).to have_content('White Castle Burger')
