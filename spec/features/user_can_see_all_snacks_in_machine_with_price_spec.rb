@@ -10,7 +10,7 @@ RSpec.describe 'When a user visits the vending machine show page' do
     snack_3 = machine.snacks.create!(name: 'Flaming Hot Cheetos', price: 2.50)
 
     visit "/machines/#{machine.id}"
-
+    save_and_open_page
     expect(page).to have_content('* White Castle Burger: $3.50')
     expect(page).to have_content('* Pop Rocks: $1.50')
     expect(page).to have_content('* Flaming Hot Cheetos: $2.50')
