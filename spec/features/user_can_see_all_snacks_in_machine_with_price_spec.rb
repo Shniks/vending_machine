@@ -23,9 +23,10 @@ RSpec.describe 'When a user visits the vending machine show page' do
     snack_1 = machine.snacks.create!(name: 'White Castle Burger', price: 3.50)
     snack_2 = machine.snacks.create!(name: 'Pop Rocks', price: 1.50)
     snack_3 = machine.snacks.create!(name: 'Flaming Hot Cheetos', price: 2.50)
+    snack_4 = machine.snacks.create!(name: 'Cheese', price: 8.50)
 
     visit "/machines/#{machine.id}"
 
-    expect(page).to have_content('Average Price: $2.50')
+    expect(page).to have_content('Average Price: $4.00')
   end
 end
