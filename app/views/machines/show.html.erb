@@ -4,3 +4,4 @@
 <% @machine.snacks.each do |snack| %>
   <p>* <%= snack.name %>: $<%= number_with_precision(snack.price, :precision => 2) %><p>
 <% end %>
+<p>Average Price: $<%= number_with_precision(@machine.average_price, :precision => 2) %></p>
